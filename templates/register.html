@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="title">
+        <h3>Enregistrement</h3>
+        <p>Veuillez remplir les champs suivants pour créer votre compte.</p>
+    </div>
+
+    {% if error %}
+            <div class="error-message">
+                <p class="error">{{ error }}</p>
+            </div>
+        {% endif %}
+        
+    <form class="register-form" action="{{ url_for('register') }}" method="POST">
+        <fieldset>
+            <legend>Nom d'utilisateur</legend>
+            <input type="text" id="username" name="username" required>
+        </fieldset>
+        <fieldset>
+            <legend>Adresse e-mail</legend>
+            <input type="email" id="email" name="email" required>
+        </fieldset>
+        <fieldset>
+            <legend>Mot de passe</legend>
+            <input type="password" id="password" name="password" required>
+        </fieldset>
+        <fieldset>
+            <legend>Confirmer le mot de passe</legend>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </fieldset>
+        
+        <button type="submit">S'enregistrer</button>
+
+        
+        
+    </form>
+    <div class="login-link">
+        <p>Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a>.</p>
+    </div>
+{% endblock %}

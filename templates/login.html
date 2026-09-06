@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="title">
+        <h3>Connexion</h3>
+        <p>Connectez-vous pour accéder à votre compte.</p>
+    </div>
+    {% if success %}
+        <div class="success-message">
+            <p class="error">{{ success }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% endif %}
+
+    <form class="login-form" action="{{ url_for('login') }}" method="POST">
+        <fieldset>
+            <legend>Nom d'utilisateur</legend>
+            <input type="text" id="username" name="username" required>
+        </fieldset>
+        <fieldset>
+            <legend>Mot de passe</legend>
+            <input type="password" id="password" name="password" required>
+        </fieldset>
+        <button type="submit">Se connecter</button>
+    </form>
+    <div class="register-link">
+        <p>Vous n'avez pas de compte ? <a href="/register">Enregistrez-vous ici</a>.</p>
+    </div>
+{% endblock %}

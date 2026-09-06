@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>Gend(R) Assistant V2</title>
+</head>
+<body>
+    <fieldset>
+        <legend class="base"><img src="{{ url_for('static', filename='img/france.png') }}" alt="france">Gend(R) Assistant V2</legend>
+        {% block content %}{% endblock %}
+    </fieldset>
+    <div class="spacer"></div>
+    <footer>
+        <p>&copy; 2026 Gend(R) Assistant V2. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

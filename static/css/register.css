@@ -1,0 +1,85 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-form fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 35px;
+    transition: all 0.5s;
+    overflow: hidden;
+
+}
+
+.register-form fieldset legend {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 10px;
+    transition: color 0.5s;
+}
+
+.register-form input {
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.register-form fieldset:focus-within {
+    border-color: #007BFF;
+}
+
+.register-form fieldset:focus-within legend {
+    color: #007BFF;
+}
+
+.register-form button {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 5px 20px;
+ 
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+    text-decoration: none;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.5s, color 0.5s;   
+}
+
+.register-form button:hover {
+    border-color: #007BFF;
+    color: #007BFF;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: #007BFF;
+}
+

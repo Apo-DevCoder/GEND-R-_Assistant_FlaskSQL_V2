@@ -1,0 +1,24 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 200px auto;
+}
+
+.buttons a {
+    padding: 5px 20px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    transition: border-color 0.5s, color 0.5s;   
+}
+
+.buttons a:hover {
+    border-color: #007BFF;
+    color: #007BFF;
+}
