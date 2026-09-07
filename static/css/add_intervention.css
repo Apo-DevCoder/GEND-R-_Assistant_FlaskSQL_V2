@@ -1,0 +1,116 @@
+.add-intervention-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.add-intervention-form fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 30px;
+    transition: all 0.5s;
+    overflow: hidden;
+
+}
+
+.add-intervention-form .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
+    margin-bottom: 10px;
+    transition: all 0.5s;
+    overflow: hidden;
+
+}
+
+.add-intervention-form fieldset legend {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 10px;
+    transition: color 0.5s;
+}
+
+.add-intervention-form input {
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.add-intervention-form textarea {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 6px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+    resize: none;   
+}
+
+.add-intervention-form fieldset:focus-within {
+    border-color: #007BFF;
+}
+
+.add-intervention-form fieldset:focus-within legend {
+    color: #007BFF;
+}
+.add-intervention-form .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-intervention-form button {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 5px 20px;
+ 
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-family: "JetBrains Mono", monospace;
+    text-decoration: none;
+    background-color: transparent;
+    color: #333;
+    transition: border-color 0.5s, color 0.5s;   
+}
+
+.add-intervention-form button:hover {
+    border-color: #007BFF;
+    color: #007BFF;
+}
+
+.add-intervention-form a {
+    text-decoration: underline;
+    color: red;
+    margin-top: 5px;
+}

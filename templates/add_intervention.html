@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="title">
+        <h3>Ajouter une intervention</h3>
+        <p>Remplissez les champs suivants pour enregistrer une nouvelle intervention.</p>
+    </div>
+    <form class="add-intervention-form" action="{{ url_for('add_intervention') }}" method="POST">
+        <fieldset>
+            <legend>Date :</legend>
+            <input type="date" id="date" name="date" required>
+        </fieldset>
+        <fieldset>
+            <legend>Heure :</legend>
+            <input type="time" id="hour" name="hour" required>
+        </fieldset>
+        <fieldset>
+            <legend>Adresse :</legend>
+            <input type="text" id="location" name="location" required>
+        </fieldset>
+        <fieldset>
+            <legend>Motif :</legend>
+            <input type="text" id="type" name="type" required>
+        </fieldset>
+        <fieldset class="description">
+            <legend>Description :</legend>
+            <textarea name="description" id="description"></textarea>
+        </fieldset>       
+        <button type="submit">Enregistrer</button>
+        <a href="/homepage">Annuler</a>
+    </form>
+{% endblock %}

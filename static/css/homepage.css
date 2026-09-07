@@ -1,0 +1,82 @@
+.title h3 strong {
+    color: #007BFF;
+}
+
+.add-intervention {
+    margin: 20px auto;
+    padding: 5px 20px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    transition: border-color 0.5s, color 0.5s;   
+}
+
+.add-intervention:hover {
+    border-color: #007BFF;
+    color: #007BFF;
+}
+
+.intervention-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    font-size: 14px;
+}
+
+.intervention-card fieldset {
+    margin: 10px auto;
+    border: 2px solid #333;
+}
+
+.intervention-card fieldset legend {
+    padding: 0 10px;
+    color: #007BFF;
+}
+
+.intervention-card .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0 0 0;
+}
+
+.intervention-card .buttons a {
+    font-size: 11px;
+    width: 120px;
+    text-align: center;
+    border: 1px solid #333;
+
+}
+
+.intervention-card .buttons .consult {
+    border: 1px solid #007BFF;
+}
+.intervention-card .buttons .consult:hover {
+    color: #007BFF;
+}
+.intervention-card .buttons .complete {
+    border: 1px solid green;
+}
+.intervention-card .buttons .complete:hover {
+    color: green;
+}
+.intervention-card .buttons .erase {
+    border: 1px solid red;
+}
+.intervention-card .buttons .erase:hover {
+    color: red;
+}
+
+.no-interventions {
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}

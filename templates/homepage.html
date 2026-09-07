@@ -1,5 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Bienvenue sur Gend(R) Assistant V2! {{ session.get('username') }}</p>
+    <div class="title">
+        <h3>Bienvenue sur Gend(R) Assistant V2 <strong>{{ session.get('username') }}.</strong></h3>
+        <p>Enregistrer votre première intervention , ou modifier les informations existantes.</p>
+    </div>
+
+    {% if success %}
+        <div class="success-message">
+            <p class="error">{{ success }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% endif %}
+
+    <a href="{{ url_for('add_intervention') }}" class="add-intervention">Ajouter une intervention</a>
+
+    <div class="intervention-container">
+        {% if interventions %}
+            {% for intervention in interventions %}
+                <div class="intervention-card">
+                    <fieldset>
+                        <legend><strong>Date:</strong> {{intervention[2]}} <strong>À:</strong> {{intervention[3]}}</legend>
+                        <p><strong>Adresse:</strong> {{intervention[4]}}</p>
+                        <p><strong>Motif:</strong> {{intervention[5]}}</p>
+                        <p><strong>Description:</strong> {{intervention[6]}}</p>
+                        <div class="buttons">
+                            <a href="" class="consult">Consulter</a>
+                            <a href="" class="complete">Completer</a>
+                            <a href="" class="erase">Effacer</a>
+                        </div>
+                    </fieldset>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-interventions">Aucune intervention enregistrée.</p>
+        {% endif %}
+    </div>
 {% endblock %}

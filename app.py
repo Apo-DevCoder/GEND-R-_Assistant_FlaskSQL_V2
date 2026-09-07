@@ -41,7 +41,7 @@ def register():
             message = "Enregistrement réussi. Veuillez vous connecter."
             return render_template('login.html', success=message)
         except:
-            message = "Une erreur s'est produite. Veuillez réessayer."
+            message = "Erreur, veuillez réessayer."
             return render_template('register.html', error=message)
 
     return render_template('register.html')
@@ -56,9 +56,9 @@ def login():
 
         if db_handler.check_user_exists(username) and db_handler.check_password(username, password):
             session['username'] = username
-            return render_template('homepage.html')
+            return redirect('homepage')
         else:
-            message = "Identifiants ou mot de passe incorrects."
+            message = "Identifiant ou mot de passe incorrect."
             return render_template('login.html', error=message)
 
     return render_template('login.html')
@@ -68,10 +68,44 @@ def login():
 def homepage():
 
     if 'username' in session:
-        return render_template('homepage.html')
+
+        username = session['username']
+        print(username)
+        current_interventions = db_handler.get_user_interventions(username)
+        print(current_interventions)   
+        return render_template('homepage.html', interventions=current_interventions)
     else:
         return redirect(url_for('login'))
 
+
+@app.route('/add_intervention', methods=['GET', 'POST'])
+def add_intervention():
+
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        username = session['username']
+        date = request.form['date']
+        hour = request.form['hour']
+        location = request.form['location']
+        type = request.form['type']
+        description = request.form['description']
+        arrived = ""
+        cr = ""
+        endhour = ""
+
+        try:
+            db_handler.add_intervention(username, date, hour, location, type, description, arrived, cr, endhour)
+            message = "Intervention ajoutée avec succès."
+            redirect_url = url_for('homepage', success=message)
+            return redirect(redirect_url)
+        except:
+            message = "Une erreur s'est produite lors de l'ajout de l'intervention."
+            redirect_url = url_for('homepage', error=message)
+            return redirect(redirect_url)
+
+    return render_template('add_intervention.html')
 
 
 
