@@ -70,10 +70,15 @@ def homepage():
     if 'username' in session:
 
         username = session['username']
-        print(username)
         current_interventions = db_handler.get_user_interventions(username)
-        print(current_interventions)   
-        return render_template('homepage.html', interventions=current_interventions)
+
+        if 'success' in request.args:
+            return render_template('homepage.html', interventions=current_interventions, success=request.args.get('success'))
+        elif 'error' in request.args:
+            return render_template('homepage.html', interventions=current_interventions, error=request.args.get('error'))
+        else:
+            return render_template('homepage.html', interventions=current_interventions)
+
     else:
         return redirect(url_for('login'))
 
@@ -128,12 +133,16 @@ def delete():
     print(id)
 
     try:
-        db_handler.delete_user_intervention(id)
-        message = "Intervention supprimée."
-        redirect_url = url_for('homepage', success=message)
-        return redirect(redirect_url)
+        if db_handler.delete_user_intervention(id):
+            message = "Intervention supprimée."
+            redirect_url = url_for('homepage', success=message)
+            return redirect(redirect_url)
+        else:
+            message = "Intervention inexistante."
+            redirect_url = url_for('homepage', error=message)
+            return redirect(redirect_url)
     except:
-        message = "Une erreur est survenue."
+        message = "Une erreur est survenue"
         redirect_url = url_for('homepage', error=message)
         return redirect(redirect_url)
 
