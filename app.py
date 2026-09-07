@@ -64,6 +64,13 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/disconnect')
+def disconnect():
+
+    session.clear()
+    return redirect(url_for('login'))
+
+
 @app.route('/homepage')
 def homepage():
 
@@ -112,6 +119,18 @@ def add_intervention():
 
     return render_template('add_intervention.html')
 
+
+@app.route('/complete', methods=['GET', 'POST'])
+def complete():
+
+    if 'username' not in session:
+                return redirect(url_for('login'))
+
+    if request.method == 'POST':
+         pass
+
+    return render_template('complete_page.html')
+    
 
 @app.route('/delete_page')
 def delete_page():

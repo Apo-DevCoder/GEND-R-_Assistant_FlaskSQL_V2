@@ -31,7 +31,7 @@
                         <p><strong>Description:</strong> {{intervention[6]}}</p>
                         <div class="buttons">
                             <a href="" class="consult">Consulter</a>
-                            <a href="" class="complete">Completer</a>
+                            <a href="{{ url_for('complete', current_inter=intervention) }}" class="complete">Completer</a>
                             <a href="{{ url_for('delete_page', intervention_id=intervention[0]) }}" class="erase">Effacer</a>
                         </div>
                     </fieldset>
@@ -41,4 +41,5 @@
             <p class="no-interventions">Aucune intervention enregistrée.</p>
         {% endif %}
     </div>
+    <a href="{{ url_for('disconnect') }}" class="disconnect">Se déconnecter</a>
 {% endblock %}
