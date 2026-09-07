@@ -37,18 +37,19 @@
 .intervention-card fieldset legend {
     padding: 0 10px;
     color: #007BFF;
+    font-size: 15px;
 }
 
 .intervention-card .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     margin: 10px 0 0 0;
 }
 
 .intervention-card .buttons a {
     font-size: 11px;
-    width: 120px;
+    width: 100px;
     text-align: center;
     border: 1px solid #333;
 

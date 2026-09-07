@@ -8,7 +8,7 @@
 
     {% if success %}
         <div class="success-message">
-            <p class="error">{{ success }}</p>
+            <p class="success">{{ success }}</p>
         </div>
     {% endif %}
 
@@ -32,7 +32,7 @@
                         <div class="buttons">
                             <a href="" class="consult">Consulter</a>
                             <a href="" class="complete">Completer</a>
-                            <a href="" class="erase">Effacer</a>
+                            <a href="{{ url_for('delete_page', intervention_id=intervention[0]) }}" class="erase">Effacer</a>
                         </div>
                     </fieldset>
                 </div>

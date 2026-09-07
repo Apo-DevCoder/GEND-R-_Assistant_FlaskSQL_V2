@@ -108,6 +108,39 @@ def add_intervention():
     return render_template('add_intervention.html')
 
 
+@app.route('/delete_page')
+def delete_page():
+
+    if 'username' not in session:
+            return redirect(url_for('login'))
+
+    intervention_id = request.args.get('intervention_id')
+    return render_template('delete_page.html', id=intervention_id)
+
+
+@app.route('/delete')
+def delete():
+
+    if 'username' not in session:
+                return redirect(url_for('login'))
+
+    id = request.args.get('id')
+    print(id)
+
+    try:
+        db_handler.delete_user_intervention(id)
+        message = "Intervention supprimée."
+        redirect_url = url_for('homepage', success=message)
+        return redirect(redirect_url)
+    except:
+        message = "Une erreur est survenue."
+        redirect_url = url_for('homepage', error=message)
+        return redirect(redirect_url)
+
+
+
+
+
 
 if __name__ == '__main__':
 
