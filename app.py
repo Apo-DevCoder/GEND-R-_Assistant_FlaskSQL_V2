@@ -126,10 +126,17 @@ def complete():
     if 'username' not in session:
                 return redirect(url_for('login'))
 
-    if request.method == 'POST':
-         pass
+    if request.method == 'GET':
+         intervention_id = request.args.get('intervention_id')
+         print(intervention_id)
+         intervention = db_handler.get_intervention_by_id(intervention_id)
+         print(intervention)
 
-    return render_template('complete_page.html')
+         return render_template('complete_page.html', intervention=intervention)
+
+    if request.method == 'POST':
+         return "post method request"
+
     
 
 @app.route('/delete_page')

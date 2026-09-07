@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="title">
+    <div class="title">
         <h3>Completer une intervention.</h3>
         <p>Completer et déclarer les impliqués.</p>
     </div>
@@ -18,5 +18,35 @@
             <p class="error">{{ error }}</p>
         </div>
     {% endif %}
+
+    <div class="existing-data">
+        <fieldset>
+            <legend><strong>Date:</strong> {{ intervention[2] }} <strong>À:</strong> {{ intervention[3] }}</legend>
+            <p><strong>Adresse:</strong> {{ intervention[4] }}</p>
+            <p><strong>Motif:</strong> {{ intervention[5] }}</p>
+            <p><strong>Description:</strong> {{ intervention[6] }}</p>
+        </fieldset>
+    </div>
+    <div class="to_complete">
+        <fieldset>
+            <legend><strong>&#128393; À completer :</strong></legend>
+            <form action="" method="">
+                <div>
+                    <label for="arrived">Sur les lieux :</label>
+                    <input type="time" name="arrived" id="arrived" value="{{ intervention[7] }}">
+                </div>
+                <div>
+                    <label for="cr">Compte rendu :</label>
+                    <textarea name="cr" id="cr" value="{{ intervention[8] }}"></textarea>
+                </div>
+                <div>
+                    <label for="endhour">Fin d'intervention :</label>
+                    <input type="time" name="endhour" id="endhour" value="{{ intervention[9] }}">
+                </div>
+                <a href="">Déclarer les impliqués.</a>
+                <button type="submit">Enregistrer</button>
+            </form>
+        </fieldset>
+    </div>
 
 {% endblock %}
