@@ -47,7 +47,7 @@
                     <input type="time" name="endhour" id="endhour" value="{{ intervention[9] }}">
                 </div>
                 <div class="buttons">
-                    <a href="">Déclarer les impliqués.</a>
+                    <a href="{{ url_for('add_person', intervention_id=intervention[0]) }}">Déclarer les impliqués.</a>
                     <button type="submit">Enregistrer</button>
                 </div>
             </form>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="title">
+        <h3>Déclarer les impliqués.</h3>
+        <p>Déclarer ici les impliqués ( victimes, contrevenants, impliqués).</p>
+    </div>
+
+    {% if success %}
+        <div class="success-message" id="success-message">
+            <p class="success">{{ success }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message" id="error-message">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% endif %}
+    
+    <div class="add_person">
+        <fieldset>
+            <legend><strong>&#128393; À completer :</strong></legend>
+            <form action="{{ url_for('add_person') }}" method="POST">
+
+                <input type="hidden" name="intervention_id" id="intervention_id" value="{{ intervention_id }}">
+
+                <div>
+                    <label for="fullname">Nom Complet :</label>
+                    <input type="text" name="fullname" id="fullname">
+                </div>
+                <div>
+                    <label for="birthdate">Date de naissance :</label>
+                    <input type="date" name="birthdate" id="birthdate">
+                </div>
+                <div>
+                    <label for="place_of_birth">Lieux de naissance :</label>
+                    <input type="text" name="place_of_birth" id="place_of_birth">
+                </div>
+                <div>
+                    <label for="location">Adresse :</label>
+                    <input type="text" name="location" id="location">
+                </div>
+                <div>
+                    <label for="phone">Numéro de téléphone :</label>
+                    <input type="text" name="phone" id="phone">
+                </div>
+                <div>
+                    <label for="complement">Complément d'infos :</label>
+                    <textarea name="complement" id="complement"></textarea>
+                </div>
+                <div class="btn">
+                    <button type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </fieldset>
+        <a class="abord" href="{{ url_for('complete', intervention_id=intervention_id) }}">Annuler</a>
+    </div>
+{% endblock %}

@@ -128,9 +128,7 @@ def complete():
 
     if request.method == 'GET':
          intervention_id = request.args.get('intervention_id')
-         print(intervention_id)
          intervention = db_handler.get_intervention_by_id(intervention_id)
-         print(intervention)
 
          return render_template('complete_page.html', intervention=intervention)
 
@@ -157,6 +155,42 @@ def complete():
             redirect_url = url_for('homepage', error=message)
             return redirect(redirect_url)
          
+
+@app.route('/add_person', methods=['GET', 'POST'])
+def add_person():
+
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        
+        intervention_id = request.args.get('intervention_id')
+        return render_template('add_person.html', intervention_id=intervention_id)
+
+    if request.method == 'POST':
+
+        intervention_id = request.form['intervention_id']
+        fullname = request.form['fullname']
+        birthdate = request.form['birthdate']
+        place_of_birth = request.form['place_of_birth']
+        location = request.form['location']
+        phone = request.form['phone']
+        complement = request.form['complement']
+
+        try:
+            if db_handler.add_person(intervention_id, fullname, birthdate, place_of_birth, location, phone, complement):
+                message = "Personne ajoutée avec succès."
+                redirect_url = url_for('complete', success=message, intervention_id=intervention_id)
+                return redirect(redirect_url)
+            else:
+                message = "Une erreur est survenue."
+                redirect_url = url_for('complete', error=message, intervention_id=intervention_id)
+                return redirect(redirect_url)
+        except:
+            message = "Une erreur est survenue."
+            redirect_url = url_for('homepage', error=message)
+            return redirect(redirect_url)
+
 
 @app.route('/delete_page')
 def delete_page():

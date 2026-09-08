@@ -35,17 +35,15 @@ class DatabaseHandler:
                 )''')
 
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS person (
+            CREATE TABLE IF NOT EXISTS persons (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 intervention_id INTEGER NOT NULL,
-                name TEXT NOT NULL,
-                surname TEXT NOT NULL,
+                fullname TEXT NOT NULL,
                 birthdate TEXT NOT NULL,
                 place_of_birth TEXT NOT NULL,
-                address TEXT NOT NULL,
+                location TEXT NOT NULL,
                 phone_number TEXT NOT NULL,
-                positive_alcohol_test BOOLEAN,
-                positive_drug_test BOOLEAN
+                complement TEXT
                 )''')
         
         conn.commit()
@@ -60,6 +58,7 @@ class DatabaseHandler:
         conn.commit()
         conn.close()
 
+
     def get_user(self, username):
         conn = sqlite3.connect(self.path)
         cursor = conn.cursor()
@@ -67,6 +66,7 @@ class DatabaseHandler:
         user = cursor.fetchone()
         conn.close()
         return user
+
 
     def check_user_exists(self, username):
         conn = sqlite3.connect(self.path)
@@ -76,12 +76,14 @@ class DatabaseHandler:
         conn.close()
         return user is not None
 
+
     def check_password(self, username, password):
         user = self.get_user(username)
         if user:
             user_password = user[3]
             return check_password(password, user_password)
         return False
+
 
     def add_intervention(self, username, date, hour, location, type, description, arrived, cr, endhour):
         conn = sqlite3.connect(self.path)
@@ -91,6 +93,7 @@ class DatabaseHandler:
         conn.commit()
         conn.close()
 
+
     def get_user_interventions(self, username):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
@@ -98,6 +101,7 @@ class DatabaseHandler:
         interventions = cursor.fetchall()
         conn.close()
         return interventions
+
 
     def delete_user_intervention(self, intervention_id):
         conn = sqlite3.connect(self.path)
@@ -108,6 +112,7 @@ class DatabaseHandler:
         conn.close()
         return rows_affected > 0
 
+
     def get_intervention_by_id(self, intervention_id):
         conn = sqlite3.connect(self.path)
         cursor = conn.cursor()
@@ -115,6 +120,7 @@ class DatabaseHandler:
         intervention = cursor.fetchone()
         conn.close()
         return intervention
+
 
     def update_intervention(self, intervention_id, arrived, cr, endhour):
         conn = sqlite3.connect(self.path)
@@ -124,3 +130,12 @@ class DatabaseHandler:
         rows_affected = cursor.rowcount
         conn.close()
         return rows_affected > 0
+
+
+    def add_person(self, intervention_id, fullname, birthdate, place_of_birth, location, phone, complement):
+            conn = sqlite3.connect(self.path)
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO persons (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                            (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement,))
+            conn.commit()
+            conn.close()

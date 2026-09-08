@@ -1,76 +1,62 @@
-.existing-data fieldset {
-    background-color: #dfdfdf;
-}
-
-.existing-data legend {
-    color: #007bff;
+.add_person fieldset legend {
     font-size: 15px;
     padding: 0 10px;
 }
 
-.existing-data p {
-    font-size: 14px;
-}
-
-.to-complete fieldset legend {
-    font-size: 15px;
-    padding: 0 10px;
-}
-
-.to-complete form div {
+.add_person form div {
     display: flex;
     flex-direction: row;
-    margin: 20px auto;
+    margin: 25px auto;
 }
 
-.to-complete form div label {
+.add_person form div label {
     width: 50%;
     justify-content: start;
     font-size: 14px;
     font-weight: bold;
 }
 
-.to-complete form div input {
+.add_person form div input {
     width: 50%;
     justify-content: start;
     padding: 7px;
     background-color: transparent;
-    font-family: "JetBrains Mono", monospace;
     border: none;
     outline: none;
     border-bottom: 2px solid #333;
+    font-family: "JetBrains Mono", monospace;
 }
 
-.to-complete form div textarea {
+.add_person form div textarea {
     width: 50%;
     height: 100px;
     justify-content: start;
     padding: 7px;
     background-color: transparent;
     border: 2px solid #333;
-    border-radius: 5px;
     font-family: "JetBrains Mono", monospace;
     font-size: 14px;
+    border-radius: 5px;
     resize: none;
     outline: none;
 }
 
-.to-complete form div input:focus-within {
+.add_person form div input:focus-within {
     border-bottom-color: #007BFF;
 }
 
-.to-complete form div textarea:focus-within {
+.add_person form div textarea:focus-within {
     border-color: #007BFF;
 }
 
-.to-complete form .buttons {
+.add_person form .buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.to-complete form .buttons a {
+.add_person form .buttons a {
     width: 75%;
     text-align: center;
     margin-top: 25px;
@@ -78,7 +64,13 @@
     font-size: 14px;
 }
 
-.to-complete form .buttons button {
+.add_person .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_person .btn button {
     padding: 7px 20px;
     text-align: center;
     margin-top: 40px;
@@ -92,7 +84,7 @@
     transition: color 0.5s ease;
 }
 
-.to-complete form .buttons button:hover {
+.add_person .btn button:hover {
     color: green;
 }
 
