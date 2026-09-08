@@ -27,26 +27,32 @@
             <p><strong>Description:</strong> {{ intervention[6] }}</p>
         </fieldset>
     </div>
-    <div class="to_complete">
+    <div class="to-complete">
         <fieldset>
             <legend><strong>&#128393; À completer :</strong></legend>
-            <form action="" method="">
+            <form action="{{ url_for('complete') }}" method="POST">
+
+                <input type="hidden" name="intervention_id" id="intervention_id" value="{{ intervention[0] }}">
+
                 <div>
                     <label for="arrived">Sur les lieux :</label>
                     <input type="time" name="arrived" id="arrived" value="{{ intervention[7] }}">
                 </div>
                 <div>
                     <label for="cr">Compte rendu :</label>
-                    <textarea name="cr" id="cr" value="{{ intervention[8] }}"></textarea>
+                    <textarea name="cr" id="cr">{{ intervention[8] or '' }}</textarea>
                 </div>
                 <div>
                     <label for="endhour">Fin d'intervention :</label>
                     <input type="time" name="endhour" id="endhour" value="{{ intervention[9] }}">
                 </div>
-                <a href="">Déclarer les impliqués.</a>
-                <button type="submit">Enregistrer</button>
+                <div class="buttons">
+                    <a href="">Déclarer les impliqués.</a>
+                    <button type="submit">Enregistrer</button>
+                </div>
             </form>
         </fieldset>
+        <a class="abord" href="{{ url_for('homepage') }}">Annuler</a>
     </div>
 
 {% endblock %}

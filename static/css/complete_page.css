@@ -1,3 +1,7 @@
+.existing-data fieldset {
+    background-color: #dfdfdf;
+}
+
 .existing-data legend {
     color: #007bff;
     font-size: 15px;
@@ -6,4 +10,85 @@
 
 .existing-data p {
     font-size: 14px;
+}
+
+.to-complete fieldset legend {
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+.to-complete form div {
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+}
+
+.to-complete form div label {
+    width: 50%;
+    justify-content: start;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.to-complete form div input {
+    width: 50%;
+    justify-content: start;
+    padding: 7px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+}
+
+.to-complete form div textarea {
+    width: 50%;
+    height: 100px;
+    justify-content: start;
+    padding: 7px;
+    background-color: transparent;
+    border: 2px solid #333;
+    border-radius: 5px;
+    resize: none;
+}
+
+.to-complete form .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.to-complete form .buttons a {
+    width: 75%;
+    text-align: center;
+    margin-top: 25px;
+
+    font-size: 14px;
+}
+
+.to-complete form .buttons button {
+    padding: 7px 20px;
+    text-align: center;
+    margin-top: 40px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid green;
+    border-radius: 5px;
+    transition: color 0.5s ease;
+}
+
+.to-complete form .buttons button:hover {
+    color: green;
+}
+
+.abord {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
 }

@@ -135,9 +135,28 @@ def complete():
          return render_template('complete_page.html', intervention=intervention)
 
     if request.method == 'POST':
-         return "post method request"
 
-    
+        intervention_id = request.form['intervention_id']
+        arrived = request.form['arrived']
+        cr = request.form['cr']
+        endhour = request.form['endhour']
+
+        print(intervention_id, arrived, cr, endhour)
+
+        try:
+            if db_handler.update_intervention(intervention_id, arrived, cr, endhour):
+                message = "Intervention complétée avec succès."
+                redirect_url = url_for('homepage', success=message)
+                return redirect(redirect_url)
+            else:
+                message = "Une erreur est survenue."
+                redirect_url = url_for('homepage', error=message)
+                return redirect(redirect_url)
+        except:
+            message = "Une erreur est survenue."
+            redirect_url = url_for('homepage', error=message)
+            return redirect(redirect_url)
+         
 
 @app.route('/delete_page')
 def delete_page():
