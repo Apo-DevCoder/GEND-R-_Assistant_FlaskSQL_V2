@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="title">
+        <h3>Liste des personnes impliquées enregistrer.</h3>
+        <p>Vous pouvez consulter les informations des personnes impliquées déjà enregistrer.</p>
+    </div>
+
+    {% if success %}
+        <div class="success-message" id="success-message">
+            <p class="error">{{ success }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message" id="error-message">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% endif %}
+
+    {% if persons_list %}
+        {% for person in persons_list %}
+            <div class="person-card">
+                <fieldset>
+                    <legend>{{ person[2] }}</legend>
+                    <p><strong>Né(e) le : </strong>{{ person[3] }} <strong>À :</strong>{{ person[4] }}</p>
+                    <p><strong>Adresse : </strong>{{ person[5] }}</p>
+                    <p><strong>Numéro de téléphone : </strong>{{ person[6] }}</p>
+                    <p><strong>Complément d'infos :</strong></p>
+                    <p>{{ person[7] }}</p>
+                    <div class="btn">
+                        <a href="{{ url_for('delete_person', person_name=person[2], intervention_id=person[1]) }}" class="delete">Effacer</a>
+                        <a href="" class="modify">Modifier</a>
+                    </div>
+                </fieldset>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-person">
+            <p>Aucune personne impliquée enregistrer</p>
+        </div>
+    {% endif %}
+    <div class="return">
+        <a href="{{ url_for('complete', intervention_id=intervention_id)}}">Retour</a>
+    </div>
+
+{% endblock %}

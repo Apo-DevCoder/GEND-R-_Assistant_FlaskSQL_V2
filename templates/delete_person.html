@@ -9,10 +9,10 @@
 <body>
     <fieldset class="advertissement">
         <legend><img src="{{ url_for('static', filename='img/warning.png') }}" alt="">Avertissement !</legend>
-        <p>Confirmez la suppression de l'intervention ?</p>
+        <p>Confirmez la suppression de <strong>{{ person_name }}</strong> ?</p>
         <div class="buttons">
-            <a class="confirmation" href="{{ url_for('delete', id=id) }}">Confirmer</a>
-            <a class="abord" href="{{ url_for('homepage') }}">Annuler</a>
+            <a class="confirmation" href="{{ url_for('delete_person', del_person=person_name, reload_inter_id=intervention_id) }}">Confirmer</a>
+            <a class="abord" href="{{ url_for('delete_person', inter_id=intervention_id) }}">Annuler</a>
         </div>
     </fieldset>
 </body>

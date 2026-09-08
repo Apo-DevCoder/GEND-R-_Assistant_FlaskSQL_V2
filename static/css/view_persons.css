@@ -1,0 +1,57 @@
+.person-card fieldset {
+    background-color: #dfdfdf;
+}
+
+.person-card legend {
+    color: #007bff;
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+.person-card p {
+    font-size: 14px;
+}
+
+.person-card .btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px 0 0 0;
+}
+
+.person-card .btn a {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.person-card .btn .modify {
+    border: 2px solid #007BFF;
+}
+.person-card .btn .modify:hover {
+    color: #007BFF;
+}
+
+.person-card .btn .delete {
+    border: 2px solid red;
+}
+.person-card .btn .delete:hover {
+    color: red;
+}
+
+.return {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.return a {
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}

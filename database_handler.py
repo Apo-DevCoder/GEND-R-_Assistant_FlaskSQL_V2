@@ -133,18 +133,36 @@ class DatabaseHandler:
 
 
     def add_person(self, intervention_id, fullname, birthdate, place_of_birth, location, phone, complement):
-            conn = sqlite3.connect(self.path)
-            cursor = conn.cursor()
-            cursor.execute('INSERT INTO persons (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO persons (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement) VALUES (?, ?, ?, ?, ?, ?, ?)',
                             (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement,))
-            conn.commit()
-            conn.close()
+        conn.commit()
+        conn.close()
 
 
     def get_person_interventions(self, intervention_id):
-            conn = sqlite3.connect('database.db')
-            cursor = conn.cursor()
-            cursor.execute("SELECT * FROM persons WHERE intervention_id = ?", (intervention_id,))
-            interventions = cursor.fetchall()
-            conn.close()
-            return interventions
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM persons WHERE intervention_id = ?", (intervention_id,))
+        interventions = cursor.fetchall()
+        conn.close()
+        return interventions
+
+
+    def delete_intervention_persons(self, intervention_id):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM persons WHERE intervention_id = ?', (intervention_id,))
+        conn.commit()
+        conn.close()
+
+
+    def delete_persons(self, person_name):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM persons WHERE fullname = ?', (person_name,))
+        conn.commit()
+        rows_affected = cursor.rowcount
+        conn.close()
+        return rows_affected > 0

@@ -193,6 +193,41 @@ def add_person():
             return redirect(redirect_url)
 
 
+@app.route('/view_persons')
+def view_persons():
+
+    if 'username' not in session:
+            return redirect(url_for('login'))
+
+    if request.method == 'GET':
+        if 'success' in request.args:
+            intervention_id = request.args.get('intervention_id')
+            success = request.args.get('success')
+            if len(db_handler.get_person_interventions(intervention_id)) > 0:
+                persons_list = db_handler.get_person_interventions(intervention_id)
+                return render_template('view_persons.html', intervention_id=intervention_id, persons_list=persons_list, success=success)
+            else:
+                return render_template('view_persons.html', intervention_id=intervention_id, success=success)
+            
+        elif 'error' in request.args:
+            intervention_id = request.args.get('intervention_id')
+            error = request.args.get('error')
+            if len(db_handler.get_person_interventions(intervention_id)) > 0:
+                persons_list = db_handler.get_person_interventions(intervention_id)
+                return render_template('view_persons.html', intervention_id=intervention_id, persons_list=persons_list, error=error)
+            else:
+                return render_template('view_persons.html', intervention_id=intervention_id, error=error)
+
+        else:
+            intervention_id = request.args.get('intervention_id')
+            if len(db_handler.get_person_interventions(intervention_id)) > 0:
+                persons_list = db_handler.get_person_interventions(intervention_id)
+                return render_template('view_persons.html', intervention_id=intervention_id, persons_list=persons_list)
+            else:
+                return render_template('view_persons.html', intervention_id=intervention_id)
+            
+
+
 @app.route('/delete_page')
 def delete_page():
 
@@ -213,6 +248,8 @@ def delete():
     print(id)
 
     try:
+        db_handler.delete_intervention_persons(id)
+        
         if db_handler.delete_user_intervention(id):
             message = "Intervention supprimée."
             redirect_url = url_for('homepage', success=message)
@@ -221,12 +258,47 @@ def delete():
             message = "Intervention inexistante."
             redirect_url = url_for('homepage', error=message)
             return redirect(redirect_url)
+        
     except:
         message = "Une erreur est survenue"
         redirect_url = url_for('homepage', error=message)
         return redirect(redirect_url)
 
 
+@app.route('/delete_person')
+def delete_person():
+
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if 'inter_id' in request.args:
+        inter_id = request.args.get('inter_id')
+        redirect_url = url_for('view_persons', intervention_id=inter_id)
+        return redirect(redirect_url)
+    
+    elif 'del_person' in request.args:
+        person_name = request.args.get('del_person')
+        intervention_id = request.args.get('reload_inter_id')
+
+        try:
+            if db_handler.delete_persons(person_name):
+                message = "Personne supprimée avec succes."
+                redirect_url = url_for('view_persons', success=message, intervention_id=intervention_id)
+                return redirect(redirect_url)
+            else:
+                message = "Personne introuvable."
+                redirect_url = url_for('view_persons', error=message, intervention_id=intervention_id)
+                return redirect(redirect_url)
+        except:
+            message = "Personne introuvable."
+            redirect_url = url_for('view_persons', error=message, intervention_id=intervention_id)
+            return redirect(redirect_url)
+            
+
+    else:
+        person_name = request.args.get('person_name')
+        intervention_id = request.args.get('intervention_id')
+        return render_template('delete_person.html', person_name=person_name, intervention_id=intervention_id)
 
 
 
