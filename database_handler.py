@@ -42,7 +42,7 @@ class DatabaseHandler:
                 birthdate TEXT NOT NULL,
                 place_of_birth TEXT NOT NULL,
                 location TEXT NOT NULL,
-                phone_number TEXT NOT NULL,
+                phone TEXT NOT NULL,
                 complement TEXT
                 )''')
         
@@ -97,7 +97,7 @@ class DatabaseHandler:
     def get_user_interventions(self, username):
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM interventions WHERE username = ? ORDER BY date DESC, hour DESC", (username,))
+        cursor.execute("SELECT * FROM interventions WHERE username = ? ORDER BY date ASC, hour ASC", (username,))
         interventions = cursor.fetchall()
         conn.close()
         return interventions
@@ -139,3 +139,12 @@ class DatabaseHandler:
                             (intervention_id, fullname, birthdate, place_of_birth, location, phone, complement,))
             conn.commit()
             conn.close()
+
+
+    def get_person_interventions(self, intervention_id):
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM persons WHERE intervention_id = ?", (intervention_id,))
+            interventions = cursor.fetchall()
+            conn.close()
+            return interventions

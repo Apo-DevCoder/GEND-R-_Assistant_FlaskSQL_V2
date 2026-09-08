@@ -78,6 +78,16 @@
     font-size: 14px;
 }
 
+.to-complete form p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.to-complete form p strong {
+    color:#007BFF;
+    margin-right: 25px;
+}
+
 .to-complete form .buttons button {
     padding: 7px 20px;
     text-align: center;

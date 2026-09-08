@@ -127,10 +127,15 @@ def complete():
                 return redirect(url_for('login'))
 
     if request.method == 'GET':
-         intervention_id = request.args.get('intervention_id')
-         intervention = db_handler.get_intervention_by_id(intervention_id)
 
-         return render_template('complete_page.html', intervention=intervention)
+        intervention_id = request.args.get('intervention_id')
+        success = request.args.get('success')
+        error = request.args.get('error')
+
+        intervention = db_handler.get_intervention_by_id(intervention_id)
+        persons_count = len(db_handler.get_person_interventions(intervention_id))
+
+        return render_template('complete_page.html', intervention=intervention, persons=persons_count, success=success, error=error)
 
     if request.method == 'POST':
 
@@ -178,14 +183,10 @@ def add_person():
         complement = request.form['complement']
 
         try:
-            if db_handler.add_person(intervention_id, fullname, birthdate, place_of_birth, location, phone, complement):
-                message = "Personne ajoutée avec succès."
-                redirect_url = url_for('complete', success=message, intervention_id=intervention_id)
-                return redirect(redirect_url)
-            else:
-                message = "Une erreur est survenue."
-                redirect_url = url_for('complete', error=message, intervention_id=intervention_id)
-                return redirect(redirect_url)
+            db_handler.add_person(intervention_id, fullname, birthdate, place_of_birth, location, phone, complement)
+            message = "Personne ajoutée avec succès."
+            redirect_url = url_for('complete', success=message, intervention_id=intervention_id)
+            return redirect(redirect_url)
         except:
             message = "Une erreur est survenue."
             redirect_url = url_for('homepage', error=message)
