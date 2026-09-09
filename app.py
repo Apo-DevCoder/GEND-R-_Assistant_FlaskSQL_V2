@@ -203,6 +203,8 @@ def view_persons():
         if 'success' in request.args:
             intervention_id = request.args.get('intervention_id')
             success = request.args.get('success')
+            print(intervention_id)
+            print(len(db_handler.get_person_interventions(intervention_id)))
             if len(db_handler.get_person_interventions(intervention_id)) > 0:
                 persons_list = db_handler.get_person_interventions(intervention_id)
                 return render_template('view_persons.html', intervention_id=intervention_id, persons_list=persons_list, success=success)
@@ -265,6 +267,44 @@ def delete():
         return redirect(redirect_url)
 
 
+@app.route('/modify_person', methods=['GET', 'POST'])
+def modify_person():
+
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'GET':
+
+        person_name = request.args.get('person_name')
+        person = db_handler.get_person(person_name)
+        print(person)
+        return render_template('modify_person.html', person=person)
+
+    if request.method == 'POST':
+        intervention_id = request.form['intervention_id']
+        person_id = request.form['person_id']
+        fullname = request.form['fullname']
+        birthdate = request.form['birthdate']
+        place_of_birth = request.form['place_of_birth']
+        location = request.form['location']
+        phone = request.form['phone']
+        complement = request.form['complement']
+
+        try:
+            if db_handler.update_person(fullname, birthdate, place_of_birth, location, phone, complement, person_id):
+                message = "Personne modifiée avec succes."
+                redirect_url = url_for('view_persons', intervention_id=intervention_id, success=message)
+                return redirect(redirect_url)
+            else:
+                message = "Personne inexistante."
+                redirect_url = url_for('view_persons', intervention_id=intervention_id, error=message)
+                return redirect(redirect_url)
+        except:
+            message = "Personne inexistante."
+            redirect_url = url_for('view_persons', intervention_id=intervention_id, error=message)
+            return redirect(redirect_url)
+        
+
 @app.route('/delete_person')
 def delete_person():
 
@@ -300,6 +340,17 @@ def delete_person():
         intervention_id = request.args.get('intervention_id')
         return render_template('delete_person.html', person_name=person_name, intervention_id=intervention_id)
 
+
+@app.route('/consult_page')
+def consult_page():
+
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    intervention_id = request.args.get('intervention_id')
+    intervention = db_handler.get_intervention_by_id(intervention_id)
+    persons = db_handler.get_person_interventions(intervention_id)
+    return render_template('consult_page.html', intervention=intervention, persons=persons)
 
 
 

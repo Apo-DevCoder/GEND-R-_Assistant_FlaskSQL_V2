@@ -25,12 +25,12 @@
             {% for intervention in interventions %}
                 <div class="intervention-card">
                     <fieldset>
-                        <legend><strong>Date:</strong> {{intervention[2]}} <strong>À:</strong> {{intervention[3]}}</legend>
-                        <p><strong>Adresse:</strong> {{intervention[4]}}</p>
-                        <p><strong>Motif:</strong> {{intervention[5]}}</p>
-                        <p><strong>Description:</strong> {{intervention[6]}}</p>
+                        <legend><strong>Date:</strong> {{ intervention[2] }} <strong>À:</strong> {{ intervention[3] }}</legend>
+                        <p><strong>Adresse:</strong> {{ intervention[4] }}</p>
+                        <p><strong>Motif:</strong> {{ intervention[5] }}</p>
+                        <p><strong>Description:</strong> {{ intervention[6] }}</p>
                         <div class="buttons">
-                            <a href="" class="consult">Consulter</a>
+                            <a href="{{ url_for('consult_page', intervention_id=intervention[0]) }}" class="consult">Consulter</a>
                             <a href="{{ url_for('complete', intervention_id=intervention[0]) }}" class="complete">Completer</a>
                             <a href="{{ url_for('delete_page', intervention_id=intervention[0]) }}" class="erase">Effacer</a>
                         </div>

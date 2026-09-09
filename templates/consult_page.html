@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="title">
+        <h3>Résumé de l'intervention.</h3>
+        <p>Toutes les informations concernant cette intervention.</p>
+    </div>
+
+    <div class="resume-card">
+        <fieldset class="interventions">
+            <legend><strong>Date:</strong> {{ intervention[2] }} <strong>À:</strong> {{ intervention[3] }}</legend>
+            <p><strong>Adresse:</strong> {{ intervention[4] }}</p>
+            <p><strong>Motif:</strong> {{ intervention[5] }}</p>
+            <p><strong>Description:</strong> {{ intervention[6] }}</p>
+            <p><strong>Sur les lieux à:</strong> {{ intervention[7] }}</p>
+            <p><strong>Compte rendu:</strong> {{ intervention[8] }}</p>
+        </fieldset>
+        <div class="subtitle">
+            <h4>Personnes impliquées déclarer</h4>
+        </div>
+        {% if persons %}
+            {% for person in persons %}
+                <div class="resume-person-card">
+                    <fieldset>
+                        <legend>{{ person[2] }}</legend>
+                        <p><strong>Né(e) le : </strong>{{ person[3] }} <strong>À :</strong>{{ person[4] }}</p>
+                        <p><strong>Adresse : </strong>{{ person[5] }}</p>
+                        <p><strong>Numéro de téléphone : </strong>{{ person[6] }}</p>
+                        <p><strong>Complément d'infos :</strong></p>
+                        <p>{{ person[7] }}</p>
+                    </fieldset>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="return">
+        <a href="{{ url_for('homepage')}}">Retour</a>
+    </div>
+{% endblock %}

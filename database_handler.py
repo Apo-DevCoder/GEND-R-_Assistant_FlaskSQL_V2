@@ -145,9 +145,9 @@ class DatabaseHandler:
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM persons WHERE intervention_id = ?", (intervention_id,))
-        interventions = cursor.fetchall()
+        persons = cursor.fetchall()
         conn.close()
-        return interventions
+        return persons
 
 
     def delete_intervention_persons(self, intervention_id):
@@ -156,6 +156,25 @@ class DatabaseHandler:
         cursor.execute('DELETE FROM persons WHERE intervention_id = ?', (intervention_id,))
         conn.commit()
         conn.close()
+
+
+    def get_person(self, person_name):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM persons WHERE fullname = ?', (person_name,))
+        person = cursor.fetchone()
+        conn.close()
+        return person
+
+
+    def update_person(self, fullname, birthdate, place_of_birth, location, phone, complement, person_id):
+        conn = sqlite3.connect(self.path)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE persons SET fullname = ?, birthdate = ?, place_of_birth = ?, location = ?, phone = ?, complement = ? WHERE id = ?', (fullname, birthdate, place_of_birth, location, phone, complement, person_id))
+        conn.commit()
+        rows_affected = cursor.rowcount
+        conn.close()
+        return rows_affected > 0
 
 
     def delete_persons(self, person_name):

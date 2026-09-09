@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="title">
+        <h3>Modifier les infos d'une personnes.</h3>
+        <p>Vous pouvez ici modifier les informations précedement renseignées.</p>
+    </div>
+
+    {% if success %}
+        <div class="success-message" id="success-message">
+            <p class="success">{{ success }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message" id="error-message">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% endif %}
+    
+    <div class="modify_person">
+        <fieldset>
+            <legend><strong>&#128393; À completer :</strong></legend>
+            <form action="{{ url_for('modify_person') }}" method="POST">
+
+                <input type="hidden" name="person_id" id="person_id" value="{{ person[0] }}">
+                <input type="hidden" name="intervention_id" id="intervention_id" value="{{ person[1] }}">
+
+                <div>
+                    <label for="fullname">Nom Complet :</label>
+                    <input type="text" name="fullname" id="fullname" value="{{ person[2] }}">
+                </div>
+                <div>
+                    <label for="birthdate">Date de naissance :</label>
+                    <input type="date" name="birthdate" id="birthdate" value="{{ person[3] }}">
+                </div>
+                <div>
+                    <label for="place_of_birth">Lieux de naissance :</label>
+                    <input type="text" name="place_of_birth" id="place_of_birth" value="{{ person[4] }}">
+                </div>
+                <div>
+                    <label for="location">Adresse :</label>
+                    <input type="text" name="location" id="location" value="{{ person[5] }}">
+                </div>
+                <div>
+                    <label for="phone">Numéro de téléphone :</label>
+                    <input type="text" name="phone" id="phone" value="{{ person[6] }}">
+                </div>
+                <div>
+                    <label for="complement">Complément d'infos :</label>
+                    <textarea name="complement" id="complement">{{ person[7] }}</textarea>
+                </div>
+                <div class="btn">
+                    <button type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </fieldset>
+        <a class="abord" href="{{ url_for('complete', intervention_id=intervention_id) }}">Retour</a>
+    </div>
+{% endblock %}

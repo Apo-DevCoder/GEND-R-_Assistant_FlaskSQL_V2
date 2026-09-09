@@ -31,7 +31,7 @@
                     <p>{{ person[7] }}</p>
                     <div class="btn">
                         <a href="{{ url_for('delete_person', person_name=person[2], intervention_id=person[1]) }}" class="delete">Effacer</a>
-                        <a href="" class="modify">Modifier</a>
+                        <a href="{{ url_for('modify_person', person_name=person[2]) }}" class="modify">Modifier</a>
                     </div>
                 </fieldset>
             </div>

@@ -1,0 +1,24 @@
+.resume-card fieldset {
+    background-color: #dfdfdf;
+}
+
+.resume-card fieldset legend {
+    color: #007BFF;
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+.resume-card fieldset p {
+    font-size: 14px;
+}
+
+.resume-card .subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.resume-card .subtitle h4 {
+    color: #007BFF;
+}
