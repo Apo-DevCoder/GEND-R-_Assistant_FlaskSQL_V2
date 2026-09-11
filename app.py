@@ -27,6 +27,11 @@ def register():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
+
+        if len(password) < 8:
+            message = "Le mot de passe doit contenir au moins 8 caractères."
+            return render_template('register.html', error=message)
+
         
         if password != confirm_password:
             message = "Les mots de passe ne correspondent pas."
