@@ -5,7 +5,7 @@ from tools import hash_password, check_password
 class DatabaseHandler:
     def __init__(self):
 
-        self.path = "database.db"
+        self.path = "/opt/database.db"
 
 
     def init_db(self):
