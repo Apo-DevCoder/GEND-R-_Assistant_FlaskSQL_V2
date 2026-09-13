@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
 db_handler = DatabaseHandler()
+db_handler.init_db()
 
 
 @app.route('/')
@@ -356,10 +357,3 @@ def consult_page():
     intervention = db_handler.get_intervention_by_id(intervention_id)
     persons = db_handler.get_person_interventions(intervention_id)
     return render_template('consult_page.html', intervention=intervention, persons=persons)
-
-
-
-if __name__ == '__main__':
-
-    db_handler.init_db()
-    app.run(debug=False, host='0.0.0.0', port=5000)
