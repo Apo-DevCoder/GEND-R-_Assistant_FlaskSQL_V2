@@ -95,7 +95,7 @@ class DatabaseHandler:
 
 
     def get_user_interventions(self, username):
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('self.path')
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM interventions WHERE username = ? ORDER BY date ASC, hour ASC", (username,))
         interventions = cursor.fetchall()
@@ -142,7 +142,7 @@ class DatabaseHandler:
 
 
     def get_person_interventions(self, intervention_id):
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('self.path')
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM persons WHERE intervention_id = ?", (intervention_id,))
         persons = cursor.fetchall()
